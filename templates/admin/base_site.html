@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+
+{% load tailwind_tags %}
+
+{% block title %}
+    {% if subtitle %}
+        {{ subtitle }} |
+    {% endif %}{{ title }} |
+    {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block extrastyle %}
+    {% tailwind_css %}
+{% endblock %}
+
+{% block branding %}
+    <div id="site-name">
+        <a href="{% url 'admin:index' %}" class="!text-amber-600">Project Administration</a>
+    </div>
+    {% if user.is_anonymous %}
+        {% include 'admin/color_theme_toggle.html' %}
+    {% endif %}
+{% endblock %}
+
+{# prettier-ignore #}
+{% block nav-global %}
+{% endblock %}
